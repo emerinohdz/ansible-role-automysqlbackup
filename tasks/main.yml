@@ -65,6 +65,16 @@
   tags:
     - automysqlbackup
 
+- name: apply automysqlbackup configuration
+  template:
+    src: automysqlbackup.j2
+    dest: /etc/automysqlbackup/{{ ansible_hostname.lower() }}.conf
+    group: root
+    owner: root
+    mode: "0600"
+  tags:
+    - automysqlbackup
+
 - name: remove the cron.daily file
   file:
     path: /etc/cron.daily/automysqlbackup
