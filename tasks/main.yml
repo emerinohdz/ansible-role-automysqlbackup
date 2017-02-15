@@ -1,15 +1,18 @@
 ---
 
-- name: check for unsupported target operating system
-  fail:
-    msg: "The operating system of the target machine ({{ inventory_hostname }}) is not currently supported"
-  when: not (ansible_os_family == 'Debian' or ansible_distribution == 'Ubuntu')
+- name: Ensure tmp dir exists
+  file:
+    path: /tmp/automysqlbackup
+    state: directory
+  tags:
+    - automysqlbackup
 
-- name: Debian | install automysqlbackup
-  apt:
-    pkg: automysqlbackup
-    state: present
-    update_cache: yes
+- name: download automysqlbackup
+  unarchive:
+    src: "{{ automysqlbackup_download_url }}"
+    dest: /tmp/automysqlbackup
+    creates: /usr/local/bin/automysqlbackup
+    remote_src: true
   tags:
     - automysqlbackup
 
