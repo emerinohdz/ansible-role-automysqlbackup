@@ -13,6 +13,7 @@
     dest: /tmp/automysqlbackup
     creates: /usr/local/bin/automysqlbackup
     remote_src: true
+    register: installed
   tags:
     - automysqlbackup
 
@@ -27,8 +28,8 @@
   copy:
     src: /tmp/automysqlbackup/automysqlbackup
     dest: /usr/local/bin/automysqlbackup
-    creates: /usr/local/bin/automysqlbackup
     remote_src: yes
+  when: installed.changed
   tags:
     - automysqlbackup
 
