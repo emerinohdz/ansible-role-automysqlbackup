@@ -5,5 +5,5 @@
 
   roles:
     # name of role to test
-    - role: geerlingguy-mysql
+    - role: geerlingguy.mysql
     - role: ansible-role-automysqlbackup
