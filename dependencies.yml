@@ -4,6 +4,6 @@
 #
 ---
 # - src: noqcks.apt-repository
-- src: https://github.com/guisea/ansible-role-mysql
+- src: git+git@github.com:guisea/ansible-role-mysql.git
   name: geerlingguy.mysql
 
