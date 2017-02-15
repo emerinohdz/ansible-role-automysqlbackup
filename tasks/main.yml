@@ -52,7 +52,7 @@
   package:
     name: pbzip2
     state: present
-  when: automysqlbackup_multicore == "yes" and automysqlbackup_compression == "pbzip2"
+  when: automysqlbackup_multicore == "yes" and automysqlbackup_compression == "bzip2"
   tags:
     - automysqlbackup
 
