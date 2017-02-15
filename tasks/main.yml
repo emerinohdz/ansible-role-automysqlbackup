@@ -56,6 +56,15 @@
   tags:
     - automysqlbackup
 
+- name: set permissions
+  file:
+    path: /usr/local/bin/automysqlbackup
+    state: touch
+    mode: u+rwx,g+rx,a+rx
+  changed_when: false
+  tags:
+    - automysqlbackup
+
 - name: remove the cron.daily file
   file:
     path: /etc/cron.daily/automysqlbackup
