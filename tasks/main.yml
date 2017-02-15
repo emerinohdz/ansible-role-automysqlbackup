@@ -84,14 +84,21 @@
     - automysqlbackup
 
 - name: add automysqlbackup cron job
-  cron:
-    name: "automysqlbackup"
-    minute: "{{ automysqlbackup_cron.minute }}"
-    hour: "{{ automysqlbackup_cron.hour }}"
-    day: "{{ automysqlbackup_cron.day }}"
-    month: "{{ automysqlbackup_cron.month }}"
-    weekday: "{{ automysqlbackup_cron.weekday }}"
-    user: root
-    job: "/usr/sbin/automysqlbackup"
+    src: automysqlbackup.j2
+    dest: /etc/cron.d/00automysqlbackup
+    group: root
+    owner: root
+    mode: "0600"
   tags:
     - automysqlbackup
+#  cron:
+#    name: "automysqlbackup"
+#    minute: "{{ automysqlbackup_cron.minute }}"
+#    hour: "{{ automysqlbackup_cron.hour }}"
+#    day: "{{ automysqlbackup_cron.day }}"
+#    month: "{{ automysqlbackup_cron.month }}"
+#    weekday: "{{ automysqlbackup_cron.weekday }}"
+#    user: root
+#    job: "/usr/sbin/automysqlbackup"
+#  tags:
+#    - automysqlbackup
