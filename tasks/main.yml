@@ -40,6 +40,22 @@
   tags:
     - automysqlbackup
 
+- name: Ensure deps installed for multicore archiving if enabled
+  package:
+    name: pigz
+    state: present
+  when: automysqlbackup_multicore == "yes" and automysqlbackup_compression == "gzip"
+  tags:
+    - automysqlbackup
+
+- name: Ensure deps installed for multicore archiving if enabled
+  package:
+    name: pbzip2
+    state: present
+  when: automysqlbackup_multicore == "yes" and automysqlbackup_compression == "pbzip2"
+  tags:
+    - automysqlbackup
+
 - name: remove the cron.daily file
   file:
     path: /etc/cron.daily/automysqlbackup
