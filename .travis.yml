@@ -1,21 +1,11 @@
 ---
-
-language: python
-
-services: mysql
-
-python: "2.7"
-
-before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq aptitude python-apt python-pycurl
+sudo: required
+# docker is required to run tests
+services: docker
 
 install:
-  - pip install ansible ansible-lint
+  - bundle install
 
 script:
-  - echo localhost > inventory
-  - ansible-lint *.yml
-  - ansible-playbook --syntax-check -i inventory role.yml
-  - ansible-playbook -i inventory role.yml --connection=local --sudo -vvvv
-  - /usr/local/bin/automysqlbackup
+  # run kitchen tests (destroy, create, converge, setup, verify and destroy)
+  - kitchen test
