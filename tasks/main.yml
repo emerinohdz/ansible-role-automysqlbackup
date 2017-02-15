@@ -16,13 +16,27 @@
   tags:
     - automysqlbackup
 
-- name: apply automysqlbackup configuration
-  template:
-    src: automysqlbackup.j2
-    dest: /etc/default/automysqlbackup
-    group: root
-    owner: root
-    mode: "0600"
+- name: Ensure config directory exists
+  file:
+    path: /etc/automysqlbackup
+    state: directory
+  tags:
+    - automysqlbackup
+
+- name: Install automysqlbackup
+  copy:
+    src: /tmp/automysqlbackup/automysqlbackup
+    dest: /usr/local/bin/automysqlbackup
+    creates: /usr/local/bin/automysqlbackup
+    remote_src: yes
+  tags:
+    - automysqlbackup
+
+- name: Install global configuration
+  copy:
+    src: /tmp/automysqlbackup/automysqlbackup.conf
+    dest: /etc/automysqlbackup/automysqlbackup.conf
+    remote_src: yes
   tags:
     - automysqlbackup
 
