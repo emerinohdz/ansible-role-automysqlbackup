@@ -75,7 +75,7 @@
   tags:
     - automysqlbackup
 
-- name: remove the cron.daily file
+- name: remove the cron.daily file if exists
   file:
     path: /etc/cron.daily/automysqlbackup
     state: absent
