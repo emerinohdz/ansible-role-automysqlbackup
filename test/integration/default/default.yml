@@ -2,7 +2,11 @@
 # host to test against
 - hosts: test-kitchen
   remote_user: root
-
+  pre_tasks:
+    - name: Ensure openssl available
+      package:
+        name: openssl
+        state: present
   roles:
     # name of role to test
     - role: geerlingguy.mysql
