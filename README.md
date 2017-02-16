@@ -24,48 +24,34 @@ Available variables are listed below, along with default values (see `defaults/m
     automysqlbackup_username: "$(grep user ~/.my.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
     automysqlbackup_password: "$(grep password ~/.my.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
 
-```
-# database username and password that will perform the backups
-automysqlbackup_username: "$(grep user /etc/mysql/debian.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
-automysqlbackup_password: "$(grep password /etc/mysql/debian.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
+By default this role will look for the username and password from ".my.cnf" in the users home directory currently just "root"
 
-# hostname or ip address of the database server
-automysqlbackup_host: localhost
+## Dependencies
 
-# space separated string of databases to include or ignore in the backup
-automysqlbackup_dbames: "all"
-automysqlbackup_dbexclude: ""
+None.
 
-# whether to include a create database statement
-automysqlbackup_createdb_stmt: "yes"
+## Example Playbook
 
-automysqlbackup_backup_directory: /var/lib/automysqlbackup
+    - hosts: db-servers
+      become: yes
+      vars_files:
+        - vars/main.yml
+      roles:
+        - { role: guisea.automysqlbackup }
 
-# backup each database in a separate directory or everything to a single file
-automysqlbackup_sepdir: "yes"
+*Inside `vars/main.yml`*:
 
-# day of the week for weekly backbackups (6 - Saturday)
-automysqlbackup_doweekly: 6
-
-# output location (log, files, stdout, quiet) and where output is sent (user / email address)
-automysqlbackup_mailcontent: quiet
-automysqlbackup_mailaddr: root
-
-# default cron configuration
-automysqlbackup_cron:
-  minute: 0
-  hour: 0
-  day: "*"
-  month: "*"
-  weekday: "*"
-
-# latest
-automysqlbackup_latest: "no"
-
-```
+    automysqlbackup_cron:
+      minute: 30
+      hour: 19
+      day: "*"
+      month: "*"
+      weekday: "*"
 
 ## License
 
-MIT
+MIT / BSD
 
----
+## Author Information
+
+This role was created in 2017 by [Aaron Guise](https://www.guise.net.nz/)
