@@ -1,12 +1,7 @@
 ---
 
-- name: Ensure tmp dir exists
-  file:
-    path: /tmp/automysqlbackup
-    state: directory
-  tags:
-    - automysqlbackup
-
+- name: Setup directories
+  include: directories.yml
 - name: download automysqlbackup
   unarchive:
     src: "{{ automysqlbackup_download_url }}"
@@ -14,13 +9,6 @@
     creates: /usr/local/bin/automysqlbackup
     remote_src: true
   register: installed
-  tags:
-    - automysqlbackup
-
-- name: Ensure config directory exists
-  file:
-    path: /etc/automysqlbackup
-    state: directory
   tags:
     - automysqlbackup
 
