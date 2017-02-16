@@ -14,11 +14,11 @@ provisioner:
 platforms:
   - name: centos-7
     driver_config:
-      image: geerlingguy/docker-centos7-ansible:latest
+      image: centos:centos7
       run_command:
-        - /usr/sbin/systemd
-        - yum install -y git
-        - yum install -y openssl
+        - /usr/sbin/init
+        - yum install -y epel-release
+        - yum install -y deltarpm ansible git openssl
       privileged: true
       waitfor_ssh: false
 
