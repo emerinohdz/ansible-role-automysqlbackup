@@ -41,5 +41,5 @@ script:
   # Check if memcached is running.
   #- 'docker exec --tty "$(cat ${container_id})" env TERM=xterm memcached -h'
 
-#notifications:
-#  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
