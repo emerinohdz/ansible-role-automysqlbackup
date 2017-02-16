@@ -1,10 +1,16 @@
 ---
+- name: check if is installed
+  stat:
+    path: /usr/local/bin/automysqlbackup
+  register: st
+
 - name: Ensure tmp dir exists
   file:
     path: /tmp/automysqlbackup
     state: directory
   tags:
     - automysqlbackup
+  when: not st.stat.exists
 
 - name: Ensure config directory exists
   file:
