@@ -6,6 +6,7 @@
     remote_src: yes
   tags:
     - automysqlbackup
+  when: not st.stat.exists
 
 - name: apply host automysqlbackup configuration
   template:
