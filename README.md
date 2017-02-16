@@ -18,6 +18,12 @@ No special requirements; note that this role requires root access, so either run
 
 **Variables**
 
+Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+    automysqlbackup_backup_directory: /var/lib/automysqlbackup
+    automysqlbackup_username: "$(grep user ~/.my.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
+    automysqlbackup_password: "$(grep password ~/.my.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
+
 ```
 # database username and password that will perform the backups
 automysqlbackup_username: "$(grep user /etc/mysql/debian.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
