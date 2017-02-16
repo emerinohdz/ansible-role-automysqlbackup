@@ -2,7 +2,7 @@
 driver:
   # using docker to test
   name: docker
-  privileged: truzs
+  privileged: true
 
 provisioner:
   # use an ansible playbook to provision our server
