@@ -8,4 +8,5 @@ install:
 
 script:
   # run kitchen tests (destroy, create, converge, setup, verify and destroy)
+  - yum install -y openssl
   - kitchen test
