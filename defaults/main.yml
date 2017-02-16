@@ -11,7 +11,9 @@ automysqlbackup_password: "$(grep password ~/.my.cnf | tail -n 1 | cut -d'=' -f2
 automysqlbackup_host: localhost
 
 # space separated string of databases to include or ignore in the backup
+# by default all databases are backed up implied by ()
 automysqlbackup_dbames: ()
+# These are exlusions from backup
 automysqlbackup_dbexclude: "performance_schema information_schema"
 
 # Choose Compression type. (gzip or bzip2)
