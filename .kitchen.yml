@@ -16,11 +16,12 @@ platforms:
     driver_config:
       image: geerlingguy/docker-centos7-ansible:latest
       run_command:
-        - /usr/lib/systemd/systemd
+        - /usr/sbin/init
         - yum install -y git
         - yum install -y openssl
       volume: /sys/fs/cgroup
       privileged: true
+      waitfor_ssh: false
 
 
 
