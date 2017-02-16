@@ -3,7 +3,8 @@ driver:
   # using docker to test
   name: docker
   privileged: true
-  init: /sbin/init
+  init: /usr/lib/systemd/systemd
+  run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 provisioner:
   # use an ansible playbook to provision our server
