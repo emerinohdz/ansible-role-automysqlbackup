@@ -3,6 +3,7 @@ driver:
   # using docker to test
   name: docker
   privileged: true
+  run_command: /sbin/init
 
 provisioner:
   # use an ansible playbook to provision our server
