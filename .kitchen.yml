@@ -15,7 +15,7 @@ provisioner:
 platforms:
   - name: centos-7
     driver_config:
-      image: geerlingguy/docker-centos7-ansible:latest
+      image: guisea/centos7-ansible:latest
       platform: centos
 
 suites:
