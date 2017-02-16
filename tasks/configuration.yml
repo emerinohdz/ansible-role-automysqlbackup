@@ -1,0 +1,18 @@
+---
+- name: Install global configuration
+  copy:
+    src: /tmp/automysqlbackup/automysqlbackup.conf
+    dest: /etc/automysqlbackup/automysqlbackup.conf
+    remote_src: yes
+  tags:
+    - automysqlbackup
+
+- name: apply host automysqlbackup configuration
+  template:
+    src: automysqlbackup.j2
+    dest: /etc/automysqlbackup/{{ ansible_hostname.lower() }}.conf
+    group: root
+    owner: root
+    mode: "0600"
+  tags:
+    - automysqlbackup

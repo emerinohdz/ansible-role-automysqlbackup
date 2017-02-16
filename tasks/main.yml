@@ -1,7 +1,7 @@
 ---
+# Ensure directories are established as required
+- include: directories.yml
 
-- name: Setup directories
-  include: directories.yml
 - name: download automysqlbackup
   unarchive:
     src: "{{ automysqlbackup_download_url }}"
@@ -21,13 +21,17 @@
   tags:
     - automysqlbackup
 
-- name: Install global configuration
-  copy:
-    src: /tmp/automysqlbackup/automysqlbackup.conf
-    dest: /etc/automysqlbackup/automysqlbackup.conf
-    remote_src: yes
+- name: set permissions
+  file:
+    path: /usr/local/bin/automysqlbackup
+    state: touch
+    mode: u+rwx,g+rx,a+rx
+  changed_when: false
   tags:
     - automysqlbackup
+
+# Run configuration items
+- include: configuration.yml
 
 - name: Ensure deps installed for multicore archiving if enabled
   package:
@@ -45,49 +49,5 @@
   tags:
     - automysqlbackup
 
-- name: set permissions
-  file:
-    path: /usr/local/bin/automysqlbackup
-    state: touch
-    mode: u+rwx,g+rx,a+rx
-  changed_when: false
-  tags:
-    - automysqlbackup
-
-- name: apply automysqlbackup configuration
-  template:
-    src: automysqlbackup.j2
-    dest: /etc/automysqlbackup/{{ ansible_hostname.lower() }}.conf
-    group: root
-    owner: root
-    mode: "0600"
-  tags:
-    - automysqlbackup
-
-- name: remove the cron.daily file if exists
-  file:
-    path: /etc/cron.daily/automysqlbackup
-    state: absent
-  tags:
-    - automysqlbackup
-
-- name: add automysqlbackup cron job
-  template:
-    src: cron.d.j2
-    dest: /etc/cron.d/00automysqlbackup
-    group: root
-    owner: root
-    mode: "0600"
-  tags:
-    - automysqlbackup
-#  cron:
-#    name: "automysqlbackup"
-#    minute: "{{ automysqlbackup_cron.minute }}"
-#    hour: "{{ automysqlbackup_cron.hour }}"
-#    day: "{{ automysqlbackup_cron.day }}"
-#    month: "{{ automysqlbackup_cron.month }}"
-#    weekday: "{{ automysqlbackup_cron.weekday }}"
-#    user: root
-#    job: "/usr/sbin/automysqlbackup"
-#  tags:
-#    - automysqlbackup
+- include: cron.yml
+- include: cleanup.yml
