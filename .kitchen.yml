@@ -16,9 +16,12 @@ platforms:
   - name: centos-7
     driver_config:
       image: geerlingguy/docker-centos7-ansible:latest
-      run_command: /usr/sbin/init
+      run_command:
+        - '/usr/sbin/sshd -D -o UseDNS=no -o UsePAM=no -o PasswordAuthentication=yes -o UsePrivilegeSeparation=no -o PidFile=/tmp/sshd.pid'
+        - /usr/sbin/init
+        - yum install -y git
+        - yum install -y openssl
       privileged: true
-      platform: centos
 
 
 
