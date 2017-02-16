@@ -15,7 +15,7 @@ provisioner:
 platforms:
   - name: centos-7
     driver_config:
-      image: guisea/centos7-ansible:latest
+      image: geerlingguy/docker-centos7-ansible:latest
       run_command: /usr/sbin/init
       privileged: true
       platform: centos
