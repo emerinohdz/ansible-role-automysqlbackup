@@ -3,7 +3,7 @@ driver:
   # using docker to test
   name: docker
   privileged: true
-  init: /usr/lib/systemd/systemd
+  run_command: /usr/lib/systemd/systemd
   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 provisioner:
