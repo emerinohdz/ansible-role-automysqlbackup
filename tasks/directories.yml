@@ -22,7 +22,7 @@
 
 - name: Ensure Backup directory is present
   file:
-    path: " {{ automysqlbackup_backup_directory }}
+    path: "{{ automysqlbackup_backup_directory }}"
     state: directory
   tags:
     - automysqlbackup
