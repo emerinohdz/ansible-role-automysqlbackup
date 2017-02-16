@@ -2,9 +2,7 @@
 driver:
   # using docker to test
   name: docker
-  privileged: true
-  run_command: /usr/lib/systemd/systemd
-  run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  privileged: truzs
 
 provisioner:
   # use an ansible playbook to provision our server
@@ -18,7 +16,11 @@ platforms:
   - name: centos-7
     driver_config:
       image: guisea/centos7-ansible:latest
+      run_command: /usr/sbin/init
+      privileged: true
       platform: centos
+
+
 
 suites:
   # suites found at /test/integration/$test-name
