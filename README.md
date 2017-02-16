@@ -1,12 +1,18 @@
 # Automysqlbackup
 
-[![Build Status](https://travis-ci.org/lyrasis/ansible-automysqlbackup-role.svg?branch=master)](https://travis-ci.org/lyrasis/ansible-automysqlbackup-role)
+[![Build Status](https://travis-ci.org/guisea/ansible-role-automysqlbackup.svg?branch=master)](https://travis-ci.org/guisea/ansible-role-automysqlbackup)
 
-Install the automysqlbackup utility.
+Installs and configures the automysqlbackup utility on RHEL/CentOS or Debian/Ubuntu servers.
 
 ## Requirements
 
-None.
+No special requirements; note that this role requires root access, so either run it in a playbook with a global `become: yes`, or invoke the role in your playbook like:
+
+    - hosts: mysql-database
+      roles:
+        - role: guisea.automysqlbackup
+          become: yes
+
 
 ---
 
