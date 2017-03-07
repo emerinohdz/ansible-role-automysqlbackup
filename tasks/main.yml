@@ -5,7 +5,7 @@
 - name: download automysqlbackup
   unarchive:
     src: "{{ automysqlbackup_download_url }}"
-    dest: /tmp/automysqlbackup
+    dest: /tmp
     creates: /usr/local/bin/automysqlbackup
     remote_src: true
   register: installed
