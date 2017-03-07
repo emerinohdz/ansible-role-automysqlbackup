@@ -1,7 +1,7 @@
 ---
 - name: Install global configuration
   copy:
-    src: /tmp/automysqlbackup/automysqlbackup.conf
+    src: /tmp/automysqlbackup-master/automysqlbackup.conf
     dest: /etc/automysqlbackup/automysqlbackup.conf
     remote_src: yes
   tags:

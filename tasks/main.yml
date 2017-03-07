@@ -14,7 +14,7 @@
 
 - name: Install automysqlbackup
   copy:
-    src: /tmp/automysqlbackup/automysqlbackup
+    src: /tmp/automysqlbackup-master/automysqlbackup
     dest: /usr/local/bin/automysqlbackup
     remote_src: yes
   when: installed.changed
