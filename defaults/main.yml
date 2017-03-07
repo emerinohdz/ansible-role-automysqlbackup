@@ -1,7 +1,7 @@
 ---
 
 # Download URL to get the archive from
-automysqlbackup_download_url: "https://downloads.sourceforge.net/project/automysqlbackup/AutoMySQLBackup/AutoMySQLBackup%20VER%203.0/automysqlbackup-v3.0_rc6.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fautomysqlbackup%2F%3Fsource%3Dtyp_redirect&ts=1487019213&use_mirror=svwh"
+automysqlbackup_download_url: "https://github.com/guisea/automysqlbackup/archive/master.zip"
 
 # database username and password that will perform the backups
 automysqlbackup_username: "$(grep user ~/.my.cnf | tail -n 1 | cut -d'=' -f2 | awk '{print $1}')"
