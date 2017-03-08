@@ -2,13 +2,7 @@
 # Ensure directories are established as required
 - include: directories.yml
 
-- name: Ensure dependencies present
-  package:
-    name: "{{ item }}"
-    state: installed
-  with_items: "{{ automysqlbackup_deps }}"
-  tags:
-    - automysqlbackup
+- include: "setup-{{ ansible_os_family }}.yml"
 
 - name: download automysqlbackup
   unarchive:
