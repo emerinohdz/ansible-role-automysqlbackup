@@ -2,6 +2,13 @@
 # Ensure directories are established as required
 - include: directories.yml
 
+- name: Ensure dependencies present
+  package:
+    name: "{{ item }}"
+    state: installed
+  tags:
+    - automysqlbackup
+
 - name: download automysqlbackup
   unarchive:
     src: "{{ automysqlbackup_download_url }}"

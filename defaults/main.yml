@@ -80,5 +80,8 @@ automysqlbackup_latest: "no"
 # and removes the date and time information from the filenames (if present).
 automysqlbackup_latest_clean_filenames: "yes"
 
+automysqlbackup_deps:
+  - unzip
+
 
 
