@@ -6,6 +6,7 @@
   package:
     name: "{{ item }}"
     state: installed
+  with_items: "{{ automysqlbackup_deps }}
   tags:
     - automysqlbackup
 
