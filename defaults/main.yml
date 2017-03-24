@@ -55,7 +55,7 @@ automysqlbackup_rotationweekly: 35
 automysqlbackup_rotationmonthly: 150
 
 # output location (log, files, stdout, quiet) and where output is sent (user / email address)
-automysqlbackup_mailcontent: "quiet"
+automysqlbackup_mailcontent: "stdout"
 # Email Address to send mail to? (user@domain.com)
 automysqlbackup_mailaddr: "root"
 
