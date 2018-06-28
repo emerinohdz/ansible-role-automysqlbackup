@@ -14,25 +14,27 @@ automysqlbackup_host: localhost
 # by default all databases are backed up implied by ()
 automysqlbackup_dbames: ()
 # These are exlusions from backup
-automysqlbackup_dbexclude: "performance_schema information_schema"
+automysqlbackup_dbexclude:
+   - performance_schema
+   - information_schema
 
 # Choose Compression type. (gzip or bzip2)
 automysqlbackup_compression: gzip
 
 # use multicore compression
-automysqlbackup_multicore: no
+automysqlbackup_multicore: 'no'
 automysqlbackup_multicore_threads: "{{ ((ansible_processor_cores * ansible_processor_threads_per_core) * ansible_processor_count) -1 }}"
 
 # whether to include a create database statement
-automysqlbackup_createdb_stmt: no
+automysqlbackup_createdb_stmt: 'no'
 
 automysqlbackup_backup_directory: /var/lib/automysqlbackup
 
 # Dump full schema, routines, triggers etc.
-automysqlbackup_dump_full_schema: yes
+automysqlbackup_dump_full_schema: 'yes'
 
 # backup each database in a separate directory or everything to a single file
-automysqlbackup_sepdir: "yes"
+automysqlbackup_sepdir: 'yes'
 
 # day of the week for weekly backups (1 to 7 where 1 is Monday)
 # Set to 0 to disable weekly backups.
@@ -55,7 +57,7 @@ automysqlbackup_rotationweekly: 35
 automysqlbackup_rotationmonthly: 150
 
 # output location (log, files, stdout, quiet) and where output is sent (user / email address)
-automysqlbackup_mailcontent: "stdout"
+automysqlbackup_mailcontent: 'quiet'
 # Email Address to send mail to? (user@domain.com)
 automysqlbackup_mailaddr: "root"
 
@@ -73,7 +75,7 @@ automysqlbackup_cron:
   weekday: "*"
 
 # Keep a look
-automysqlbackup_latest: "no"
+automysqlbackup_latest: 'no'
 
 # Remove all date and time information from the filenames in the latest folder.
 # Runs, if activated, once after the backups are completed. Practically it just finds all files in the latest folder
@@ -82,6 +84,3 @@ automysqlbackup_latest_clean_filenames: "yes"
 
 automysqlbackup_deps:
   - unzip
-
-
-
