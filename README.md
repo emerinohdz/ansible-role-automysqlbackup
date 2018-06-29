@@ -47,6 +47,14 @@ None.
       day: "*"
       month: "*"
       weekday: "*"
+    # Setup postbackup - example: rsync backups to another host.
+    automysqlbackup_postbackup: true
+    automysqlbackup_postbackup_file: /etc/mysql-backup-post
+    automysqlbackup_postbackup_content: |
+      #!/bin/bash
+      /usr/bin/rsync -avz --no-perms --no-owner --no-group -e "ssh -p 22" --delete /var/lib/automysqlbackup/ an.up.add.ress:/mnt/samba/backups/mysql_backups/
+    # Above appends the rsync to your existing automysqlbackup. No need to schedule another action. 
+    
 
 ## License
 
