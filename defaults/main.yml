@@ -84,3 +84,9 @@ automysqlbackup_latest_clean_filenames: "yes"
 
 automysqlbackup_deps:
   - unzip
+
+automysqlbackup_postbackup: False
+automysqlbackup_postbackup_file: /etc/mysql-backup-post
+automysqlbackup_postbackup_content: |
+  #!/bin/bash
+  echo "No Content"

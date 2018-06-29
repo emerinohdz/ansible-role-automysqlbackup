@@ -32,6 +32,17 @@
   tags:
     - automysqlbackup
 
+- name: Create Post-Backup file
+  copy:
+    content: "{{ automysqlbackup_postbackup_content }}"
+    dest: "{{ automysqlbackup_postbackup_file }}"
+    owner: root
+    group: root
+    mode: u+rwx,g+rx,o+rx
+  when: automysqlbackup_postbackup
+  tags:
+    - automysqlbackup
+
 # Run configuration items
 - include: configuration.yml
 

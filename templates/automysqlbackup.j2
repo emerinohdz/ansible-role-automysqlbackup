@@ -246,8 +246,12 @@ CONFIG_encrypt_password="{{ automysqlbackup_encrypt_password }}"
 # Command to run before backups (uncomment to use)
 #CONFIG_prebackup="/etc/mysql-backup-pre"
 
+{% if automysqlbackup_postbackup %}
+CONFIG_postbackup="{{ automysqlbackup_postbackup_file }}"
+{% else %}
 # Command run after backups (uncomment to use)
 #CONFIG_postbackup="/etc/mysql-backup-post"
+{% endif %}
 
 # Uncomment to activate! This will give folders rwx------
 # and files rw------- permissions.
